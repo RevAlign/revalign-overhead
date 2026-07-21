@@ -12,7 +12,7 @@ You can see it with your own eyes on a map: every backyard pool, every rooftop s
 `revalign-overhead` unlocks it. Give it a point, a radius, and a description of what to look for. It pulls free satellite tiles, stitches them, runs detection, deduplicates across tile boundaries, optionally confirms with a color gate, and hands you a spreadsheet: one row per object, with latitude, longitude, a confidence score, and a Google Maps link you can click to eyeball each hit. It also saves an annotated proof image so you can trust the list before you use it.
 
 <p align="center">
-  <img src="./docs/demo.png" width="900" alt="Left: raw free satellite imagery. Right: the same imagery with revalign-overhead output, green circles are confirmed pools and amber circles are tentative.">
+  <img src="./docs/demo.jpg" width="900" alt="Left: raw free satellite imagery. Right: the same imagery with revalign-overhead output, green circles are confirmed pools and amber circles are tentative.">
   <br>
   <em>Left: free satellite imagery. Right: revalign-overhead output (green = confirmed pool, amber = tentative). A real run over Paradise Valley, Arizona.</em>
 </p>
