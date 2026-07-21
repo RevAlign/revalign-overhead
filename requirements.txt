@@ -1,0 +1,9 @@
+# Core (both backends need this):
+Pillow>=10.0
+
+# The `claude` (open-vocabulary) backend talks to the Anthropic/OpenAI HTTP APIs
+# directly using the standard library, so no extra SDK is required.
+
+# The `yolo` (local, $0) backend additionally needs (both are AGPL-3.0):
+#   pip install -e ".[yolo]"
+# or:  pip install ultralytics huggingface_hub

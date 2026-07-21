@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.eggs/
+.venv/
+venv/
+env/
+
+# Tool output (georeferenced CSVs + stitched/annotated imagery)
+out/
+out_*/
+*.csv
+!examples/**/*.csv
+canvas.png
+detected.png
+
+# Model weights (pulled on first run, can be large)
+*.pt
+.cache/
+
+# Secrets — never commit API keys
+.env
+*.key
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
