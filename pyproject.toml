@@ -9,7 +9,7 @@ description = "Find any object in overhead satellite imagery and get a georefere
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "Apache-2.0" }
-authors = [{ name = "RevAlign", email = "hello@revalign.io" }]
+authors = [{ name = "RevAlign", email = "jordan@revalign.io" }]
 keywords = [
     "satellite", "aerial", "remote-sensing", "object-detection", "geospatial",
     "computer-vision", "yolo", "vision-llm", "gis", "overhead-imagery",
