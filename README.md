@@ -3,6 +3,7 @@
 [![CI](https://github.com/RevAlign/revalign-overhead/actions/workflows/ci.yml/badge.svg)](https://github.com/RevAlign/revalign-overhead/actions/workflows/ci.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache_2.0-blue.svg)](./LICENSE)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RevAlign/revalign-overhead/blob/main/notebooks/demo.ipynb)
 
 **The data you need is sitting in satellite images, and nobody can export it.**
 
@@ -23,6 +24,8 @@ Two detection backends: a **free local YOLO model** (swimming pools ship out of 
 ## Quickstart
 
 Requires Python 3.9 or newer.
+
+**Zero setup:** [run the pool demo in Colab](https://colab.research.google.com/github/RevAlign/revalign-overhead/blob/main/notebooks/demo.ipynb), free and no API key. Or locally:
 
 ```bash
 git clone https://github.com/RevAlign/revalign-overhead
