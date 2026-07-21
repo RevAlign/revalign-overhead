@@ -1,6 +1,6 @@
-# Contributing to birdseye
+# Contributing to revalign-overhead
 
-Thanks for taking a look. birdseye is small on purpose: one engine file, the
+Thanks for taking a look. revalign-overhead is small on purpose: one engine file, the
 standard library where possible, and two detection backends. This guide gets you
 a dev environment, explains how the pieces fit, and shows how to add a new object
 or propose a pretrained model.
@@ -25,8 +25,8 @@ Built by RevAlign (https://revalign.io).
 You need Python 3.9 or newer.
 
 ```bash
-git clone https://github.com/RevAlign/birdseye
-cd birdseye
+git clone https://github.com/RevAlign/revalign-overhead
+cd revalign-overhead
 
 python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
@@ -46,7 +46,7 @@ YOLO backend is what the `[yolo]` extra is for.
 Smoke-test that it imports and the CLI builds:
 
 ```bash
-python -m birdseye --help
+python -m revalign_overhead --help
 pytest -q
 ```
 
@@ -54,7 +54,7 @@ A first real run, once you have a key set:
 
 ```bash
 export ANTHROPIC_API_KEY=...        # only for the vision backend
-python -m birdseye --object pool 33.5400 -111.9500 510
+python -m revalign_overhead --object pool 33.5400 -111.9500 510
 ```
 
 Output lands in `./out`: `detections.csv`, the stitched `canvas.png`, and an
@@ -62,7 +62,7 @@ annotated `detected.png` (green circles are confirmed, amber are tentative).
 
 ## How the pieces fit
 
-Everything lives in `birdseye/detect.py`, split into labelled sections. Reading
+Everything lives in `revalign_overhead/detect.py`, split into labelled sections. Reading
 them top to bottom is the fastest way to understand the flow:
 
 | Section | What it does |
@@ -99,7 +99,7 @@ Most objects need no code beyond one registry entry. Add an `ObjectSpec` to the
 Then run it through the open-vocabulary backend:
 
 ```bash
-python -m birdseye --backend vision --object trampoline 33.54 -111.95 510
+python -m revalign_overhead --backend vision --object trampoline 33.54 -111.95 510
 ```
 
 Notes:
@@ -144,7 +144,7 @@ confident claim we cannot back up.
 ## Submitting a change
 
 1. Fork, branch, make the change.
-2. Run `python -m birdseye --help` and `pytest -q` locally.
+2. Run `python -m revalign_overhead --help` and `pytest -q` locally.
 3. Open a PR describing what changed and, for any detector work, what you
    validated and what remains un-benchmarked.
 

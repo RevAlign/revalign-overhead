@@ -1,6 +1,6 @@
-# birdseye
+# revalign-overhead
 
-[![CI](https://github.com/RevAlign/birdseye/actions/workflows/ci.yml/badge.svg)](https://github.com/RevAlign/birdseye/actions/workflows/ci.yml)
+[![CI](https://github.com/RevAlign/revalign-overhead/actions/workflows/ci.yml/badge.svg)](https://github.com/RevAlign/revalign-overhead/actions/workflows/ci.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache_2.0-blue.svg)](./LICENSE)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
 
@@ -8,12 +8,12 @@
 
 You can see it with your own eyes on a map: every backyard pool, every rooftop solar array, every grain silo, every center-pivot irrigation circle. But "see it" is not "have it." There is no download button, no CSV, no lat/lon. The information is locked inside pixels.
 
-`birdseye` unlocks it. Give it a point, a radius, and a description of what to look for. It pulls free satellite tiles, stitches them, runs detection, deduplicates across tile boundaries, optionally confirms with a color gate, and hands you a spreadsheet: one row per object, with latitude, longitude, a confidence score, and a Google Maps link you can click to eyeball each hit. It also saves an annotated proof image so you can trust the list before you use it.
+`revalign-overhead` unlocks it. Give it a point, a radius, and a description of what to look for. It pulls free satellite tiles, stitches them, runs detection, deduplicates across tile boundaries, optionally confirms with a color gate, and hands you a spreadsheet: one row per object, with latitude, longitude, a confidence score, and a Google Maps link you can click to eyeball each hit. It also saves an annotated proof image so you can trust the list before you use it.
 
 <p align="center">
-  <img src="./docs/demo.png" width="900" alt="Left: raw free satellite imagery. Right: the same imagery with birdseye output, green circles are confirmed pools and amber circles are tentative.">
+  <img src="./docs/demo.png" width="900" alt="Left: raw free satellite imagery. Right: the same imagery with revalign-overhead output, green circles are confirmed pools and amber circles are tentative.">
   <br>
-  <em>Left: free satellite imagery. Right: birdseye output (green = confirmed pool, amber = tentative). A real run over Paradise Valley, Arizona.</em>
+  <em>Left: free satellite imagery. Right: revalign-overhead output (green = confirmed pool, amber = tentative). A real run over Paradise Valley, Arizona.</em>
 </p>
 
 Two detection backends: a **free local YOLO model** (swimming pools ship out of the box, $0 per scan) and an **open-vocabulary vision LLM** (Anthropic Claude by default, OpenAI optional) that detects anything you can describe in a sentence. Imagery is free Esri World Imagery, no API key.
@@ -25,15 +25,15 @@ Two detection backends: a **free local YOLO model** (swimming pools ship out of 
 Requires Python 3.9 or newer.
 
 ```bash
-git clone https://github.com/RevAlign/birdseye
-cd birdseye
+git clone https://github.com/RevAlign/revalign-overhead
+cd revalign-overhead
 pip install -e ".[yolo]"        # core + the free local pool detector
 ```
 
 Scan a ~510 meter square in Paradise Valley, Arizona for backyard pools:
 
 ```bash
-python -m birdseye --object pool 33.5400 -111.9500 510
+python -m revalign_overhead --object pool 33.5400 -111.9500 510
 ```
 
 `pool` ships with a pretrained model, so the backend defaults to `yolo` and this runs entirely on your machine (weights download once on first run, then it is offline). No API key, no per-scan cost, no data leaving your machine. When it finishes you have three files in `./out`:
@@ -149,7 +149,7 @@ The open-vocabulary mode takes a plain-English description and finds it. No trai
 ```bash
 export ANTHROPIC_API_KEY=...          # the open-vocab backend needs a key
 
-python -m birdseye --backend vision \
+python -m revalign_overhead --backend vision \
     --object-name "center-pivot irrigation circle" --object-size 400 \
     41.88 -101.72 3000
 ```
@@ -169,7 +169,7 @@ Remember: anything outside pools is un-benchmarked (see below).
 Fastest path. Runs the open-vocabulary backend:
 
 ```bash
-python -m birdseye --backend vision \
+python -m revalign_overhead --backend vision \
     --object-name "blue tarp on a roof" --object-size 5 \
     29.95 -90.07 800
 ```
@@ -178,7 +178,7 @@ Optionally override the whole prompt with `--prompt`.
 
 ### Option 2: register a reusable object (a few lines of code)
 
-Add an `ObjectSpec` to the `OBJECTS` registry in `birdseye/detect.py`. This gives it a stable `--object` key, an optional color gate, and an optional bundled YOLO model:
+Add an `ObjectSpec` to the `OBJECTS` registry in `revalign_overhead/detect.py`. This gives it a stable `--object` key, an optional color gate, and an optional bundled YOLO model:
 
 ```python
 OBJECTS["tennis_court"] = ObjectSpec(
@@ -222,7 +222,7 @@ The design leans on this honesty: a noisy detector proposes, a cheap determinist
 ## CLI reference
 
 ```
-python -m birdseye [options] LAT LON SIZE_M [ZOOM]
+python -m revalign_overhead [options] LAT LON SIZE_M [ZOOM]
 ```
 
 | Argument / option | Meaning | Default |
@@ -238,7 +238,7 @@ python -m birdseye [options] LAT LON SIZE_M [ZOOM]
 | `--provider` | `anthropic` or `openai` (vision backend only) | `anthropic` |
 | `--out` | output directory | `./out` |
 
-You can also run it as the installed `birdseye` command instead of `python -m birdseye`.
+You can also run it as the installed `revalign-overhead` command instead of `python -m revalign_overhead`.
 
 **Environment:** set `ANTHROPIC_API_KEY` for the default open-vocab backend, or `OPENAI_API_KEY` with `--provider openai`. Set `HUGGINGFACE_API_KEY` only if you need to pull gated YOLO weights. The `yolo` backend needs no key for the bundled pool model.
 
@@ -267,7 +267,7 @@ Contributions toward any of these are welcome. See `CONTRIBUTING.md`.
 
 ## License and credits
 
-**birdseye is Apache-2.0** (see `LICENSE`). The core install and the open-vocabulary `vision` backend depend only on Pillow, so the default path is permissively licensed and dependency-light.
+**revalign-overhead is Apache-2.0** (see `LICENSE`). The core install and the open-vocabulary `vision` backend depend only on Pillow, so the default path is permissively licensed and dependency-light.
 
 **The optional local `yolo` backend is a different license story.** It pulls in `ultralytics` and pretrained pool weights (`mozilla-ai/swimming-pool-detector`), both of which are **AGPL-3.0** (strong copyleft). If you plan to use the local YOLO backend inside a commercial or closed-source product, review AGPL-3.0 first. The `[yolo]` extra is opt-in; skip it and the tool stays on the Apache-2.0 open-vocab path.
 

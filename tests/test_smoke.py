@@ -1,4 +1,4 @@
-"""Offline smoke tests for birdseye.
+"""Offline smoke tests for revalign_overhead.
 
 These run with no network, no API keys, and no model download. They exercise the
 pure functions (tile math, the object registry, spec resolution) and confirm the
@@ -11,18 +11,18 @@ from types import SimpleNamespace
 
 import pytest
 
-import birdseye
+import revalign_overhead
 
 # Import the detect module explicitly. The package re-exports a `detect` function,
 # which shadows the `detect` submodule as an attribute, so importlib is the robust
 # way to get the module object itself.
-gt = importlib.import_module("birdseye.detect")
+gt = importlib.import_module("revalign_overhead.detect")
 
 
 def test_package_imports_and_exposes_public_api():
-    assert birdseye.__version__
+    assert revalign_overhead.__version__
     for name in ("detect", "build_canvas", "ObjectSpec", "HSVFilter", "OBJECTS"):
-        assert hasattr(birdseye, name)
+        assert hasattr(revalign_overhead, name)
 
 
 def test_pool_is_registered_and_well_formed():

@@ -21,7 +21,7 @@ test:
 # $0, no API key, imagery is free. First run downloads the pool weights once.
 demo:
 	pip install -e ".[yolo]"
-	python -m birdseye --object pool --backend yolo --out out_demo 33.5400 -111.9500 510
+	python -m revalign_overhead --object pool --backend yolo --out out_demo 33.5400 -111.9500 510
 	@echo ""
 	@echo "Done. Open out_demo/detected.png (proof image) and out_demo/detections.csv"
 

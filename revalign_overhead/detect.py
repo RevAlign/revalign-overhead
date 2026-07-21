@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-birdseye: find any object in overhead satellite imagery and get back a
+revalign-overhead: find any object in overhead satellite imagery and get back a
 georeferenced, spreadsheet-ready list.
 
 Point it at a location + radius, tell it what to look for, and it will:
@@ -29,12 +29,12 @@ small things; native-resolution windows don't.
 Quickstart:
 
     pip install -e ".[yolo]"                      # core + the free local pool detector
-    python -m birdseye --object pool 33.5400 -111.9500 510
+    python -m revalign_overhead --object pool 33.5400 -111.9500 510
 
 Describe your own object (no code, no model needed, uses the vision backend):
 
     export ANTHROPIC_API_KEY=...
-    python -m birdseye --backend vision \\
+    python -m revalign_overhead --backend vision \\
         --object-name "center-pivot irrigation circle" --object-size 400 \\
         41.88 -101.72 3000
 
@@ -448,7 +448,7 @@ def detect(lat: float, lon: float, size_m: float, z: int, spec: ObjectSpec,
 def main(argv=None):
     import argparse
     p = argparse.ArgumentParser(
-        prog="birdseye",
+        prog="revalign-overhead",
         description="Detect any object in overhead satellite imagery -> georeferenced CSV.")
     p.add_argument("lat", type=float, help="center latitude (decimal degrees)")
     p.add_argument("lon", type=float, help="center longitude (decimal degrees)")

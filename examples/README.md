@@ -1,6 +1,6 @@
 # Examples
 
-Runnable examples for `birdseye`. Each one is a small, honest demo you can copy,
+Runnable examples for `revalign-overhead`. Each one is a small, honest demo you can copy,
 run, and eyeball against the proof image it writes.
 
 ## Before you start
@@ -12,7 +12,7 @@ pip install -e .                # core (Pillow); enough for the vision backend
 pip install -e ".[yolo]"        # adds the free local YOLO backend (ultralytics + huggingface_hub, AGPL-3.0)
 ```
 
-The scripts call `python -m birdseye`. Run them from the repo root, e.g.:
+The scripts call `python -m revalign_overhead`. Run them from the repo root, e.g.:
 
 ```bash
 bash examples/pools_paradise_valley.sh

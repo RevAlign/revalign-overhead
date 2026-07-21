@@ -26,13 +26,13 @@ jobs:
           python -m pip install "Pillow>=10.0" pytest
 
       - name: Byte-compile the package
-        run: python -m py_compile birdseye/__init__.py birdseye/__main__.py birdseye/detect.py
+        run: python -m py_compile revalign_overhead/__init__.py revalign_overhead/__main__.py revalign_overhead/detect.py
 
       - name: Import the package
-        run: python -c "import birdseye; print('birdseye', birdseye.__version__)"
+        run: python -c "import revalign_overhead; print('revalign_overhead', revalign_overhead.__version__)"
 
       - name: Smoke-test the CLI (--help, no network)
-        run: python -m birdseye --help
+        run: python -m revalign_overhead --help
 
       - name: Run the offline test suite
         run: python -m pytest -q

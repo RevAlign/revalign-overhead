@@ -2,7 +2,7 @@
 
 `--object-name` is great for a one-off scan. When you want an object available by a short
 name every time (with its own tuned prompt and, optionally, a color gate or a pretrained
-model), register it in the `OBJECTS` table in `birdseye/detect.py`.
+model), register it in the `OBJECTS` table in `revalign_overhead/detect.py`.
 
 Once registered, it shows up in `--help`, in the `Known:` list, and is runnable as
 `--object <your_key>`.
@@ -59,7 +59,7 @@ CSV, just flagged). Leave `color_filter=None` for objects without a reliable sin
 
 ## Step 3: register it
 
-Add your spec to the `OBJECTS` dict in `birdseye/detect.py`. Example, a blue emergency
+Add your spec to the `OBJECTS` dict in `revalign_overhead/detect.py`. Example, a blue emergency
 roof tarp (bright blue, so a color gate helps a lot):
 
 ```python
@@ -84,7 +84,7 @@ OBJECTS: dict[str, ObjectSpec] = {
 ## Step 4: run it
 
 ```bash
-python -m birdseye --object tarp --backend vision \
+python -m revalign_overhead --object tarp --backend vision \
     --out out_tarp <lat> <lon> 500
 ```
 

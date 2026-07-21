@@ -2,7 +2,7 @@
 #
 # Validated example: backyard swimming pools in Paradise Valley, Arizona.
 #
-# This is the ONLY object birdseye has been benchmarked on. On free Esri imagery,
+# This is the ONLY object revalign-overhead has been benchmarked on. On free Esri imagery,
 # pool recall is roughly 60 to 75 percent (not perfect). A blue-water color gate
 # quarantines likely false positives as "tentative", so the "confirmed" rows stay clean.
 # Always open detected.png and check the rings against the imagery.
@@ -20,7 +20,7 @@
 
 set -euo pipefail
 
-python -m birdseye \
+python -m revalign_overhead \
     --object pool \
     --backend yolo \
     --out out_pools \

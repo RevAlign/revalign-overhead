@@ -1,4 +1,4 @@
-"""birdseye: find any object in overhead satellite imagery."""
+"""revalign-overhead: find any object in overhead satellite imagery."""
 from .detect import (
     HSVFilter,
     OBJECTS,

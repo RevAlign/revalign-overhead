@@ -23,7 +23,7 @@ set -euo pipefail
 # Center-pivot irrigation circles over farmland in Nebraska. These huge crop circles
 # (~400 m across) are easy to see from orbit, which makes them a clean first demo.
 # Zoom 16 keeps the canvas small and the run to a single cheap vision call.
-python -m birdseye \
+python -m revalign_overhead \
     --backend vision \
     --provider anthropic \
     --object-name "center-pivot irrigation circle (a large round green or brown crop field)" \
@@ -34,7 +34,7 @@ python -m birdseye \
 # Another idea: aboveground storage tanks at a tank farm (bright circular tops, ~20 m).
 # Small objects need high zoom, so scan a tighter area at zoom 19. Swap in:
 #
-#     python -m birdseye \
+#     python -m revalign_overhead \
 #         --backend vision \
 #         --object-name "aboveground storage tank (a bright circular tank top viewed from above)" \
 #         --object-size 20 \

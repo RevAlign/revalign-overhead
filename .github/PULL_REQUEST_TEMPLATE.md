@@ -1,4 +1,4 @@
-<!-- Thanks for contributing to birdseye. Keep it honest: say what you validated and what you did not. -->
+<!-- Thanks for contributing to revalign-overhead. Keep it honest: say what you validated and what you did not. -->
 
 ## What this changes
 
@@ -27,7 +27,7 @@ Attach the `detections.csv` and the annotated `detected.png` from a real run if 
 
 ## Checklist
 
-- [ ] `python -m birdseye --help` works
+- [ ] `python -m revalign_overhead --help` works
 - [ ] `pytest -q` passes (offline, no network, no keys)
 - [ ] No em dashes in code, comments, or docs
 - [ ] Any new object is documented honestly (validated vs un-benchmarked)
